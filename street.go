@@ -157,21 +157,16 @@ func (player *Player) checkWinning() {
 		}
 
 		player.street.ticker = time.NewTicker(time.Duration(player.street.interval) * time.Millisecond)
-
 		player.level.number++
 
 		go func() {
 			player.street.DrawWalls(termbox.ColorGreen)
-			player.level.Draw()
 			time.Sleep(time.Second / 7)
 			player.street.DrawWalls(termbox.ColorWhite)
-			player.level.Draw()
 			time.Sleep(time.Second / 10)
 			player.street.DrawWalls(termbox.ColorGreen)
-			player.level.Draw()
 			time.Sleep(time.Second / 7)
 			player.street.DrawWalls(termbox.ColorWhite)
-			player.level.Draw()
 		}()
 	}
 }
@@ -184,23 +179,17 @@ func (player *Player) checkLoosing() {
 		player.y = player.street.height - 1
 
 		player.street.interval = 1000
-
 		player.street.ticker = time.NewTicker(time.Duration(player.street.interval) * time.Millisecond)
-
 		player.level.number = 1
 
 		go func() {
 			player.street.DrawWalls(termbox.ColorRed)
-			player.level.Draw()
 			time.Sleep(time.Second / 7)
 			player.street.DrawWalls(termbox.ColorWhite)
-			player.level.Draw()
 			time.Sleep(time.Second / 10)
 			player.street.DrawWalls(termbox.ColorRed)
-			player.level.Draw()
 			time.Sleep(time.Second / 7)
 			player.street.DrawWalls(termbox.ColorWhite)
-			player.level.Draw()
 		}()
 	}
 }
@@ -281,6 +270,12 @@ func main() {
 	go func() {
 		for {
 			player.Draw()
+		}
+	}()
+
+	go func() {
+		for {
+			level.Draw()
 		}
 	}()
 
