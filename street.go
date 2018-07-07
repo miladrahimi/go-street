@@ -242,7 +242,6 @@ func main() {
 	}
 
 	termbox.SetInputMode(termbox.InputEsc)
-	termbox.SetOutputMode(termbox.Output256)
 
 	street := NewStreet(DefaultStreetHeight, DefaultStreetWidth)
 	level := NewLevel(street)
@@ -264,29 +263,11 @@ func main() {
 	go func() {
 		for {
 			street.Draw()
-		}
-	}()
-
-	go func() {
-		for {
 			player.Draw()
-		}
-	}()
-
-	go func() {
-		for {
-			level.Draw()
-		}
-	}()
-
-	go func() {
-		for {
 			player.checkLoosing()
-		}
-	}()
-
-	go func() {
-		for {
+			level.Draw()
+			termbox.SetCursor(1, 1)
+			termbox.HideCursor()
 			termbox.Flush()
 		}
 	}()
