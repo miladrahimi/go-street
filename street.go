@@ -178,10 +178,6 @@ func (player *Player) checkLoosing() {
 		player.x = player.street.width / 2
 		player.y = player.street.height - 1
 
-		player.street.interval = 1000
-		player.street.ticker = time.NewTicker(time.Duration(player.street.interval) * time.Millisecond)
-		player.level.number = 1
-
 		go func() {
 			player.street.DrawWalls(termbox.ColorRed)
 			time.Sleep(time.Second / 7)
